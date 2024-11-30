@@ -118,16 +118,53 @@ def merge_stores_and_menus(stores, menus):
         stores_result.append(store)
     return stores_result
 
-# Routes
+# Serve photo
 @app.route('/photo/<path:filename>', methods=['GET'])
+@swag_from({
+    'tags': ['Photo Service'],
+    'parameters': [
+        {
+            'name': 'filename',
+            'in': 'path',
+            'type': 'string',
+            'required': True,
+            'description': 'Filename of the photo to retrieve'
+        }
+    ],
+    'responses': {
+        200: {
+            'description': 'Photo file retrieved successfully'
+        },
+        404: {
+            'description': 'Photo not found'
+        }
+    }
+})
 def serve_photo(filename):
+    """
+    Serve a photo file from the server.
+    ---
+    """
     file_path = os.path.join(PHOTO_DIR, filename)
     if not os.path.exists(file_path):
         return abort(404)
     return send_from_directory(PHOTO_DIR, filename)
 
+# Hello World
 @app.route('/', methods=['GET'])
+@swag_from({
+    'tags': ['General'],
+    'responses': {
+        200: {
+            'description': 'Greeting message'
+        }
+    }
+})
 def get_echo_call():
+    """
+    Returns a simple greeting message.
+    ---
+    """
     return 'Hello, World'
 
 # View 2 Routes
