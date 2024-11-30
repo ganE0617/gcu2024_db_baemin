@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>배달의 민족</title>
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Add viewport meta tag for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>배달의 민족</h1>
+        </header>
+
+        <div class="controls">
+            <div class="select-wrapper">
+                <label for="category">카테고리 선택:</label>
+                <select id="category">
+                    <option value="">--선택하세요--</option>
+                    <option value="중식">중식</option>
+                    <option value="족발-보쌈">족발-보쌈</option>
+                    <option value="피자">피자</option>
+                    <option value="패스트푸드">패스트푸드</option>
+                    <option value="디저트">디저트</option>
+                    <option value="돈까스-회">돈까스-회</option>
+                    <option value="치킨">치킨</option>
+                </select>
+            </div>
+
+            <div class="select-wrapper">
+                <label for="orderOption">정렬 기준:</label>
+                <select id="orderOption">
+                    <option value="samecategory">기본순</option>
+                    <option value="mindeliverytip">배달팁 낮은순</option>
+                    <option value="mindeliverytime">배달시간 빠른순</option>
+                    <option value="highestrating">별점 높은순</option>
+                    <option value="couponstores">쿠폰 가게</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <!-- Modal for Menu Details -->
+    <div id="menu-modal" class="modal">
+        <div class="modal-content">
+            <span id="modal-close">&times;</span>
+            <div id="menu-details"></div>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

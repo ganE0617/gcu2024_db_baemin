@@ -5,7 +5,7 @@ import pymysql
 import os
 import zoneinfo
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='/workspace/static', static_url_path='')
 swagger = Swagger(app)
 
 # Constants and configurations
@@ -89,7 +89,7 @@ def get_menus():
         with conn.cursor() as cursor:
             menu_sql = """
                 SELECT 
-                    m.storeId, m.name AS menuName, m.price AS menuPrice, m.menuPictureUrl
+                    m.menuId, m.storeId, m.name AS menuName, m.price AS menuPrice, m.menuPictureUrl
                 FROM Menu m
                 WHERE m.status = '일반'
             """
@@ -147,16 +147,22 @@ def serve_photo(filename):
         return abort(404)
     return send_from_directory(PHOTO_DIR, filename)
 
-# Hello World
 @app.route('/', methods=['GET'])
 @swag_from({
     'tags': ['General'],
     'responses': {
         200: {
-            'description': 'Greeting message'
+            'description': 'Returns the index.html page'
         }
     }
 })
+def get_index():
+    """
+    Returns the index.html page.
+    ---
+    """
+    return app.send_static_file('index.html')
+    
 def get_echo_call():
     """
     Returns a simple greeting message.
