@@ -56,10 +56,7 @@ def get_stores(category, order_by=None, coupon_only=False):
                 SELECT 
                     s.storeId, 
                     s.name AS storeName, 
-                    s.category, 
-                    s.address, 
-                    s.storePictureUrl, 
-                    s.phone, 
+                    s.category,  
                     s.rating, 
                     s.reviewCount,
                     s.minDeliveryTime,
